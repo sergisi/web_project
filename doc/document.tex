@@ -5,6 +5,7 @@
 \usepackage{hyperref}
 \usepackage{tikz}
 \usepackage{float}
+\usepackage[simplified]{pgf-umlcd}
 \usetikzlibrary{positioning,fit,calc,arrows.meta, shapes}
 \graphicspath{ {images/} }
 
@@ -59,7 +60,83 @@
 	
 \section{Our Idea}
 \section{API's}
-\section{Model} 
+\section{Model}
+ \begin{figure}[h]
+ 	\centering
+ 	\begin{tikzpicture}
+ 	\begin{class} [text width=3cm]{Valorable}{0, -9}
+	\attribute{+ pk : int} 	
+
+ 	
+ 	\end{class}
+ 	\begin{class} [text width=4cm]{Music Group}{5, -13}
+ 	\inherit{Valorable}	
+ 	 	\attribute{+ Link a web del grup}
+ 	\attribute{+ Playlist}
+ 	\attribute{+ Contacte}
+ 	\attribute{+ Photo}
+
+ 	
+ 	\end{class}
+ 	\begin{class} [text width=4cm]{Establishment}{5, -5.5}
+ 	\inherit{Valorable}	
+ 	
+ 	
+ 	\attribute{+ Adress}
+ 	\attribute{+ Contact}
+ 	\attribute{+ Photo}
+ 	
+ 	\end{class}
+ 	\begin{class} [text width=3cm]{Events}{7, -9}
+ 	\inherit{Valorable}	
+ 	
+ 	\attribute{+ State }
+ 	\attribute{+ Date}
+ 	\attribute{+ Description}
+ 	
+ 	\end{class}
+ 	
+ 	\begin{class} [text width=3cm]{Rating}{-2, -3}
+ 	\attribute{+ pk : int} 	
+ 	
+ 	
+ 	\end{class}
+ 	\begin{class} [text width=4cm]{Comment}{5, -3.5}
+ 	\inherit{Rating}	
+ 	\attribute{+ Date Publishment }
+ 	\attribute{+ Date edited}
+ 	\attribute{+ Text}
+ 	
+ 	
+ 	\end{class}
+ 	\begin{class} [text width=2cm]{Like}{5, -2}
+ 	\inherit{Rating}
+ 	
+ 	
+ 	\attribute{+ like : bool}
+ 	
+ 	\end{class}
+ 	\begin{class} [text width=2cm]{User}{0,0}
+ 	
+ 	\attribute{+ inhereted from django}
+ 	
+ 	\end{class}
+ 	\begin{class} [text width=2cm]{Group}{5, 0}
+ 	
+ 	
+ 	\attribute{+ inhereted from django}
+ 	
+ 	\end{class}
+ 	
+ 	% Assotiations
+ 	\association{User}{1}{}{Rating}{*}{}
+ 	\composition{Group}{}{*}{User}
+ 	\association{Rating}{*}{}{Valorable}{1}{}
+ 	\association{Events}{*}{}{Music Group}{play or apply}{1..*}
+ 	\association{Events}{}{*}{Establishment}{1}{create}
+ 	\end{tikzpicture}
+ 	\caption{Model}
+ \end{figure}
 \end{document}
 
 
