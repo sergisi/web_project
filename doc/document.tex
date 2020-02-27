@@ -16,6 +16,7 @@
 \renewcommand{\title}[1]{\gdef\5title{#1}}
 \renewcommand{\author}[1]{\gdef\6author{#1}}
 \renewcommand{\date}[1]{\gdef\7date{#1}}
+\renewcommand{\baselinestretch}{1.5}
 \renewcommand{\maketitle}{ %fa el maketitle de nou
     \begin{titlepage}
         \raggedright{UNIVERSITAT DE LLEIDA \\
@@ -35,8 +36,8 @@
 %S'han de renombrar totes, inclús date, si un camp es deixa en blanc no apareix
 
 \tikzset{
-	%Style of nodes. Si poses aquí un estil es pot reutilitzar més facilment
-	pag/.style = {circle, draw=black,
+    %Style of nodes. Si poses aquí un estil es pot reutilitzar més facilment
+    pag/.style = {circle, draw=black,
                            minimum width=0.75cm, font=\ttfamily,
                            text centered}
 }
@@ -49,93 +50,100 @@
 
 %Comença el document
 \begin{document}
-	\maketitle
-	\thispagestyle{empty}
-	
-	\newpage
-	\pagenumbering{roman}
-	\tableofcontents
-	\newpage
-	\pagenumbering{arabic}
-	
+    \maketitle
+    \thispagestyle{empty}
+    
+    \newpage
+    \pagenumbering{roman}
+    \tableofcontents
+    \newpage
+    \pagenumbering{arabic}
+    
 \section{Our Idea}
+In order to find an idea for our web project, we have been looking for a real-world problem to solve. Since in our project team we are all music lovers, we have decided to develop something involved with this topic. \\
+Having said that, finally we came up with the following idea: \\
+Famous music groups have many facilities and opportunities to show their music anywhere and they have also a big audience that support them, so we wanted to help small music groups to be a little more known or at least allow them to play their music live. \\
+Wondering how to achieve this goal, we thought that establishments, such as restaurants or pubs, could be interested in having live music played in their installations for any purpose: inaugurations, parties, special occasions, background music, small concerts, among others. \\
+In this way, we will develop a web platform where establishments will post an event announcement and music groups will be able to request to play their music there live. Then, the establishments will decide whether or not accept these requests, by consulting the music groups profiles in the platform, where they will find what kind of music they play, how many musicians they are, and additional information. \\
+Besides this, normal users will be able to see in the platform what events are taking place near them, establishments and music groups profiles, as well as they will be capable of rating (commenting or liking) those profiles and events. \\
+
 \section{API's}
 \section{Model}
  \begin{figure}[h]
- 	\centering
- 	\begin{tikzpicture}
- 	\begin{class} [text width=3cm]{Valorable}{0, -9}
-	\attribute{+ pk : int} 	
+    \centering
+    \begin{tikzpicture}
+    \begin{class} [text width=3cm]{Valorable}{0, -9}
+    \attribute{+ pk : int}  
 
- 	
- 	\end{class}
- 	\begin{class} [text width=4cm]{Music Group}{5, -13}
- 	\inherit{Valorable}	
- 	 	\attribute{+ Link a web del grup}
- 	\attribute{+ Playlist}
- 	\attribute{+ Contacte}
- 	\attribute{+ Photo}
+    
+    \end{class}
+    \begin{class} [text width=4cm]{Music Group}{5, -13}
+    \inherit{Valorable} 
+        \attribute{+ Link a web del grup}
+    \attribute{+ Playlist}
+    \attribute{+ Contacte}
+    \attribute{+ Photo}
 
- 	
- 	\end{class}
- 	\begin{class} [text width=4cm]{Establishment}{5, -5.5}
- 	\inherit{Valorable}	
- 	
- 	
- 	\attribute{+ Adress}
- 	\attribute{+ Contact}
- 	\attribute{+ Photo}
- 	
- 	\end{class}
- 	\begin{class} [text width=3cm]{Events}{7, -9}
- 	\inherit{Valorable}	
- 	
- 	\attribute{+ State }
- 	\attribute{+ Date}
- 	\attribute{+ Description}
- 	
- 	\end{class}
- 	
- 	\begin{class} [text width=3cm]{Rating}{-2, -3}
- 	\attribute{+ pk : int} 	
- 	
- 	
- 	\end{class}
- 	\begin{class} [text width=4cm]{Comment}{5, -3.5}
- 	\inherit{Rating}	
- 	\attribute{+ Date Publishment }
- 	\attribute{+ Date edited}
- 	\attribute{+ Text}
- 	
- 	
- 	\end{class}
- 	\begin{class} [text width=2cm]{Like}{5, -2}
- 	\inherit{Rating}
- 	
- 	
- 	\attribute{+ like : bool}
- 	
- 	\end{class}
- 	\begin{class} [text width=2cm]{User}{0,0}
- 	
- 	\attribute{+ inhereted from django}
- 	
- 	\end{class}
- 	\begin{class} [text width=2cm]{Group}{5, 0}
- 	
- 	
- 	\attribute{+ inhereted from django}
- 	
- 	\end{class}
- 	
- 	% Assotiations
- 	\association{User}{1}{}{Rating}{*}{}
- 	\composition{Group}{}{*}{User}
- 	\association{Rating}{*}{}{Valorable}{1}{}
- 	\association{Events}{*}{}{Music Group}{play or apply}{1..*}
- 	\association{Events}{}{*}{Establishment}{1}{create}
- 	\end{tikzpicture}
- 	\caption{Model}
+    
+    \end{class}
+    \begin{class} [text width=4cm]{Establishment}{5, -5.5}
+    \inherit{Valorable} 
+    
+    
+    \attribute{+ Adress}
+    \attribute{+ Contact}
+    \attribute{+ Photo}
+    
+    \end{class}
+    \begin{class} [text width=3cm]{Events}{7, -9}
+    \inherit{Valorable} 
+    
+    \attribute{+ State }
+    \attribute{+ Date}
+    \attribute{+ Description}
+    
+    \end{class}
+    
+    \begin{class} [text width=3cm]{Rating}{-2, -3}
+    \attribute{+ pk : int}  
+    
+    
+    \end{class}
+    \begin{class} [text width=4cm]{Comment}{5, -3.5}
+    \inherit{Rating}    
+    \attribute{+ Date Publishment }
+    \attribute{+ Date edited}
+    \attribute{+ Text}
+    
+    
+    \end{class}
+    \begin{class} [text width=2cm]{Like}{5, -2}
+    \inherit{Rating}
+    
+    
+    \attribute{+ like : bool}
+    
+    \end{class}
+    \begin{class} [text width=2cm]{User}{0,0}
+    
+    \attribute{+ inhereted from django}
+    
+    \end{class}
+    \begin{class} [text width=2cm]{Group}{5, 0}
+    
+    
+    \attribute{+ inhereted from django}
+    
+    \end{class}
+    
+    % Assotiations
+    \association{User}{1}{}{Rating}{*}{}
+    \composition{Group}{}{*}{User}
+    \association{Rating}{*}{}{Valorable}{1}{}
+    \association{Events}{*}{}{Music Group}{play or apply}{1..*}
+    \association{Events}{}{*}{Establishment}{1}{create}
+    \end{tikzpicture}
+    \caption{Model}
  \end{figure}
 \end{document}
 
