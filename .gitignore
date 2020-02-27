@@ -1,0 +1,9 @@
+**document.pdf
+**.aux
+**.toc
+**.log
+**.syn*
+**.fls
+**.fdb_latexmk
+**pycache**
+**.out
