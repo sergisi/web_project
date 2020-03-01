@@ -64,24 +64,25 @@ In order to find an idea for our web project, we have been looking for a real-wo
 Having said that, finally we came up with the following idea: \\
 Famous music groups have many facilities and opportunities to show their music anywhere and they have also a big audience that support them, so we wanted to help small music groups to be a little more known or at least allow them to play their music live. \\
 Wondering how to achieve this goal, we thought that establishments, such as restaurants or pubs, could be interested in having live music played in their installations for any purpose: inaugurations, parties, special occasions, background music, small concerts, among others. \\
-In this way, we will develop a web platform where establishments will post an event announcement and music groups will be able to request to play their music there live. Then, the establishments will decide whether or not accept these requests, by consulting the music groups profiles in the platform, where they will find what kind of music they play, how many musicians they are, and additional information. \\
+In this way, we will develop a web platform where establishments will post an event announcement and music groups will be able to request to play their music there live. Then, the establishments will decide if they accept these requests, by consulting the music groups profiles in the platform, where they will find what kind of music they play, how many musicians they are, and additional information. \\
 Besides this, normal users will be able to see in the platform what events are taking place near them, establishments and music groups profiles, as well as they will be capable of rating (commenting or liking) those profiles and events. \\
 
 \section{API's}
-For the same reason as mentioned above, we have decided to use the SoundCloud API, since it is easier for smaller groups to upload their projects. We had also thought about the Spotify API, but as our target are small groups, we have thought that for them it is perhaps easier with SoundCloud.
+For the same reason as mentioned above, we have decided to use the SoundCloud API, since it is easier for smaller groups to upload their projects. We had also thought about the Spotify API, but as it requires a pricing for publishing songs in it, and our target are
+small music groups, we thought that the freeness of SoundCloud would be better.
 \\\\
-With this API, when groups create their profile they can share their songs as a portfolio. In this way, when they sign up for a musical event, the event organizer can listen to them in orther to choose a group.
+With this API, when groups create their profile they can share their songs as a portfolio. In this way, when they sign up for a musical event, the organizer can listen to them in order to choose a group.
 \newpage
 \section{Model}
  \begin{figure}[h]
     \centering
     \begin{tikzpicture}
-    \begin{class} [text width=3cm]{Valorable}{0, -9}
+    \begin{class} [text width=3cm]{Valorable}{-1, -7}
     \attribute{+ pk : int}  
 
     
     \end{class}
-    \begin{class} [text width=4cm]{Music Group}{5, -13}
+    \begin{class} [text width=4cm]{Music Group}{-1, -9}
     \inherit{Valorable} 
         \attribute{+ Link a web del grup}
     \attribute{+ Playlist}
@@ -99,7 +100,7 @@ With this API, when groups create their profile they can share their songs as a 
     \attribute{+ Photo}
     
     \end{class}
-    \begin{class} [text width=3cm]{Events}{7, -9}
+    \begin{class} [text width=3cm]{Events}{7, -9.5}
     \inherit{Valorable} 
     
     \attribute{+ State }
@@ -108,12 +109,12 @@ With this API, when groups create their profile they can share their songs as a 
     
     \end{class}
     
-    \begin{class} [text width=3cm]{Rating}{-2, -3}
+    \begin{class} [text width=3cm]{Rating}{-2, -3.5}
     \attribute{+ pk : int}  
     
     
     \end{class}
-    \begin{class} [text width=4cm]{Comment}{5, -3.5}
+    \begin{class} [text width=4cm]{Comment}{5, -3.1}
     \inherit{Rating}    
     \attribute{+ Date Publishment }
     \attribute{+ Date edited}
@@ -144,7 +145,7 @@ With this API, when groups create their profile they can share their songs as a 
     \association{User}{1}{}{Rating}{*}{}
     \composition{Group}{}{*}{User}
     \association{Rating}{*}{}{Valorable}{1}{}
-    \association{Events}{*}{}{Music Group}{play or apply}{1..*}
+    \association{Events}{}{*}{Music Group}{play or apply}{1..*}
     \association{Events}{}{*}{Establishment}{1}{create}
     \end{tikzpicture}
     \caption{Model}
