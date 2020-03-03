@@ -77,13 +77,7 @@ With this API, when groups create their profile they can share their songs as a 
  \begin{figure}[h]
     \centering
     \begin{tikzpicture}
-    \begin{class} [text width=3cm]{Valorable}{-1, -7}
-    \attribute{+ pk : int}  
-
-    
-    \end{class}
-    \begin{class} [text width=4cm]{Music Group}{-1, -9}
-    \inherit{Valorable} 
+    \begin{class} [text width=4cm]{Band}{0, -6}
         \attribute{+ Link a web del grup}
     \attribute{+ Playlist}
     \attribute{+ Contacte}
@@ -91,8 +85,7 @@ With this API, when groups create their profile they can share their songs as a 
 
     
     \end{class}
-    \begin{class} [text width=4cm]{Establishment}{5, -5.5}
-    \inherit{Valorable} 
+    \begin{class} [text width=4cm]{Establishment}{8, 0}
     
     
     \attribute{+ Adress}
@@ -100,8 +93,7 @@ With this API, when groups create their profile they can share their songs as a 
     \attribute{+ Photo}
     
     \end{class}
-    \begin{class} [text width=3cm]{Events}{7, -9.5}
-    \inherit{Valorable} 
+    \begin{class} [text width=3cm]{Events}{8, -6}
     
     \attribute{+ State }
     \attribute{+ Date}
@@ -109,44 +101,16 @@ With this API, when groups create their profile they can share their songs as a 
     
     \end{class}
     
-    \begin{class} [text width=3cm]{Rating}{-2, -3.5}
-    \attribute{+ pk : int}  
-    
-    
-    \end{class}
-    \begin{class} [text width=4cm]{Comment}{5, -3.1}
-    \inherit{Rating}    
-    \attribute{+ Date Publishment }
-    \attribute{+ Date edited}
-    \attribute{+ Text}
-    
-    
-    \end{class}
-    \begin{class} [text width=2cm]{Like}{5, -2}
-    \inherit{Rating}
-    
-    
-    \attribute{+ like : bool}
-    
-    \end{class}
     \begin{class} [text width=2cm]{User}{0,0}
     
     \attribute{+ inhereted from django}
     
     \end{class}
-    \begin{class} [text width=2cm]{Group}{5, 0}
-    
-    
-    \attribute{+ inhereted from django}
-    
-    \end{class}
-    
     % Assotiations
-    \association{User}{1}{}{Rating}{*}{}
-    \composition{Group}{}{*}{User}
-    \association{Rating}{*}{}{Valorable}{1}{}
-    \association{Events}{}{*}{Music Group}{play or apply}{1..*}
-    \association{Events}{}{*}{Establishment}{1}{create}
+    \association{User}{Owner of}{1}{Establishment}{}{*}
+    \association{Band}{}{0..1}{User}{Manager of}{‏‏‎ ‏‏‎ ‏‏‎ 1}
+    \association{Events}{}{*}{Band}{play or apply}{1..*}
+    \association{Events}{}{‏‏‎ ‏‏‎ ‏‏‎ *}{Establishment}{. 1}{create}
     \end{tikzpicture}
     \caption{Model}
     \end{figure}
