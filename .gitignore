@@ -280,3 +280,6 @@ pip-selfcheck.json
 .history
 
 # End of https://www.gitignore.io/api/venv,django,python,pycharm,visualstudiocode
+static/
+postgres/data/
+.env
