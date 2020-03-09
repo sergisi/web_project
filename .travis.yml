@@ -15,7 +15,8 @@ deploy:
   provider: heroku
   api_key:
     secure: P3SE0I/rzHIrn5+7wB9tD+R+pBVtiwkJz2l0Mha6eT+GFkbcQeQJ5VogLiHR8LYJ/NAIMxoHS/YVdwsy5xzGLo/mJcZ8bKYrIG3GsbD5KBKvRXukOzax5qGEITS2ArUfK59+vKalzZMumnRoLU0fgXO/SRW4UaA8r5YuTW4TbG9GjFTfCqDjtSL5iK7nNtu8xxTkVmXnw6n8jMnKBGvb9866Ld392e4sA6U0aVSTkSpUmPYkq6FnsDsWdZGNBTin/yvIQYj+jLeuGFI4Gq+0e5g0w7/WXj9AIwPA3dlvQL+bOxMIrx+nV9KLl7J+kh7WoMGwNrGlPADjgMPliLgHSW4AdrIiSQ552qHWf5U+g6uSYECaQBQoL+9nff2qQYO00Kqtbm7r4uDPF5Fkmp/BO0s/XtdmDmBqLfDvi43Y4JUc1/OGfwIZG7mPKl7zFM4W4xFcphtF+zOUttk6b3p1oJNkwEOb94T5Gt70pj7Q+yFcOUJGXye87Yx0g0WKVMQceuZalA77d1DvYdJZQBsCab3PLGgOEk3KLg7sokwsGoRw9vODexGMyxHEZQy1ZejO6NGB3lt85h41cOhMnw/DlqCCYwM8+RKmV6c/6vU7kAO124MJBMpae4aek87P4aWt3f9Vsc+tFi2Fn5EiDk9kCZfffqUJVcZQto5iDpB+j1U=
-  app: vibely
+  app: vibely-web
+  skip_cleanup: true
   on:
     repo: quimpm/web_project
     branch: feature/docker
