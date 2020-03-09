@@ -1,1 +1,1 @@
-web: docker-compose up --log-file -
+web_heroku: docker-compose up
