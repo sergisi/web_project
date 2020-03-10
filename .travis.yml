@@ -18,5 +18,5 @@ deploy:
   app: vibely-web
   skip_cleanup: true
   on:
-    repo: quimpm/web_project
+    repo: sergisi/web_project
     branch: feature/docker
