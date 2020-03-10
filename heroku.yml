@@ -2,8 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: gunicorn Vibely.wsgi
-release:
-  image: web
-  command:
-    - python manage.py collectstatic --noinput
+  web: sh heroku-deploy.sh
